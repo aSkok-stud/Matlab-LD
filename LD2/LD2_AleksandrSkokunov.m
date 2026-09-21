@@ -32,7 +32,7 @@ U_2 = 3;
 
 t = 0:0.005:1.5;
 n = o*randn(size(t));
-s = A*cos(2*pi*f*t);
+s = A*cos(2*pi*f*t)+n;
 
 virs = s(s>U_1);
 

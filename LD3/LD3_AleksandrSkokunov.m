@@ -2,7 +2,7 @@
 % EKf-25
 % Data: 2026-09-21
 
-% 1
+% 1 užduotis
 clear all
 clc
 
@@ -35,7 +35,7 @@ title('b)')
 xlabel('x')
 ylabel('y(x)')
 
-%% 2
+%% 2 užduotis
 clear all
 clc
 
@@ -58,3 +58,48 @@ ylim([0 10])
 title('b)')
 xlabel('Studentas')
 ylabel('Vidurkis')
+
+%% Papildoma užduotis
+clear all
+clc
+
+A = 8;
+f = 5;
+o = 1.8;
+U_1 = 5;
+U_2 = 3;
+
+t = 0:0.005:1.5;
+n = o*randn(size(t));
+s = A*cos(2*pi*f*t)+n;
+
+virs = s;
+virs(not(s>U_2)) = 0;
+
+filt_s = s;
+filt_s(s<U_2) = 0;
+
+
+figure
+subplot(2, 1, 1)
+hold on
+plot(t, s, 'b')
+plot(t, filt_s, 'g')
+yline(U_1, 'r--')
+yline(U_2, 'r-.')
+xlim([min(t) max(t)])
+ylim([min(s) max(s)])
+title('a)')
+xlabel('t')
+ylabel('s(t)')
+legend('Pradinis signalas', 'Filtruotas signalas', ...
+        'Filtravimo riba U_1', 'Filtravimo riba U_2', 'Location','eastoutside')
+
+subplot(2, 1, 2)
+stem(t, virs)
+
+[yMin, xMin] = min(virs(virs>0))
+
+title('b)')
+xlabel('t')
+ylabel('s(t)>U_1')

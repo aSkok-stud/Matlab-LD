@@ -45,7 +45,16 @@ grades = [10 6 8 4 7 9; 7 2 4 6 9 10; ...
 figure
 subplot(2, 1, 1)
 bar(grades)
+ylim([0 10])
 title('a)')
+xlabel('L.D.')
+ylabel('Pažymis')
+legend('A. S.', 'A. K.', 'S. B.', 'V. K.', 'D. J.', 'T. V.', ... 
+        'Location', 'eastoutside')
 
 subplot(2, 1, 2)
 stem(mean(grades))
+ylim([0 10])
+title('b)')
+xlabel('Studentas')
+ylabel('Vidurkis')

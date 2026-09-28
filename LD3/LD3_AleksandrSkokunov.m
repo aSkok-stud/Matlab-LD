@@ -74,7 +74,7 @@ n = o*randn(size(t));
 s = A*cos(2*pi*f*t)+n;
 
 virs = s;
-virs(not(s>U_2)) = 0;
+virs(not(s>U_2)) = NaN;
 
 filt_s = s;
 filt_s(s<U_2) = 0;
@@ -83,22 +83,37 @@ filt_s(s<U_2) = 0;
 figure
 subplot(2, 1, 1)
 hold on
-plot(t, s, 'b')
-plot(t, filt_s, 'g')
-yline(U_1, 'r--')
-yline(U_2, 'r-.')
+plot(t, s, 'r', 'LineWidth', 1)
+plot(t, filt_s, 'b--', 'LineWidth', 1)
+yline(U_1, 'g')
+yline(U_2, 'g')
 xlim([min(t) max(t)])
 ylim([min(s) max(s)])
 title('a)')
 xlabel('t')
 ylabel('s(t)')
 legend('Pradinis signalas', 'Filtruotas signalas', ...
-        'Filtravimo riba U_1', 'Filtravimo riba U_2', 'Location','eastoutside')
+        'Filtravimo riba', 'Location','eastoutside')
 
 subplot(2, 1, 2)
-stem(t, virs)
+stem(t, virs, 'g')
+hold on
 
-[yMin, xMin] = min(virs(virs>0))
+x = t;
+y = virs;
+
+valid = ~isnan(y);
+yv = y(valid);
+xv = x(valid);
+
+yMin = min(yv);
+yMax = max(yv);
+xMin = find(y==yMin);
+xMax = find(y==yMax);
+
+plot(x(xMin), y(xMin), 'rv', 'MarkerFaceColor', 'r', 'MarkerSize', 10)
+plot(x(xMax), y(xMax), 'b^', 'MarkerFaceColor', 'b', 'MarkerSize', 10)
+hold off
 
 title('b)')
 xlabel('t')

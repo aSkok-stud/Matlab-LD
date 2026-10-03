@@ -89,7 +89,7 @@ yline(U_1, 'g')
 yline(U_2, 'g')
 xlim([min(t) max(t)])
 ylim([min(s) max(s)])
-title('a)')
+title('a)', 'Color', 'r', 'FontSize', 14, 'FontWeight','bold')
 xlabel('t')
 ylabel('s(t)')
 legend('Pradinis signalas', 'Filtruotas signalas', ...
@@ -111,10 +111,10 @@ yMax = max(yv);
 xMin = find(y==yMin);
 xMax = find(y==yMax);
 
-plot(x(xMin), y(xMin), 'rv', 'MarkerFaceColor', 'r', 'MarkerSize', 10)
-plot(x(xMax), y(xMax), 'b^', 'MarkerFaceColor', 'b', 'MarkerSize', 10)
+plot(x(xMin), y(xMin), 'rdiamond', 'MarkerFaceColor', 'r', 'MarkerSize', 10)
+plot(x(xMax), y(xMax), 'bdiamond', 'MarkerFaceColor', 'b', 'MarkerSize', 10)
 hold off
 
-title('b)')
+title('b)', 'Color', 'r', 'FontSize', 14, 'FontWeight','bold')
 xlabel('t')
 ylabel('s(t)>U_1')
